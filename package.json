@@ -1,6 +1,6 @@
 {
   "name": "@pinkpixel/notification-mcp",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A model context protocol server that allows AI agents to play a notification sound via a tool when a task is completed",
   "type": "module",
   "bin": {

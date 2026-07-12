@@ -5,7 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2025-05-31
+## [0.2.0] - 2026-07-12
+
+### Added ✨
+- **Unified `notify` Tool**: A new versatile tool that supports displaying desktop toast notifications, playing sounds, or doing both in a single invocation.
+- **Cross-Platform Toast Notifications**: Native support for toasts on macOS (`osascript`), Windows (`powershell` BalloonTip), and Linux (`notify-send`).
+- **Linux Audio Support**: Fallback chain implementing audio playback on Linux using `mpg123`, `pw-play`, `mpv`, `ffplay`, and `paplay`.
+- **Sound Override Parameter**: Allows agents to override default sound choices dynamically on a per-notification basis.
+
+### Changed 🔄
+- Bumped SDK/package version to `0.2.0`.
+
+## [0.1.2] - 2025-05-31
 
 ### Added ✨
 - **Random Sound Option**: Set `MCP_NOTIFICATION_SOUND=random` to randomly play one of the 5 bundled sounds 🎲

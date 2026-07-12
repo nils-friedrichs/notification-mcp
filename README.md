@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://res.cloudinary.com/di7ctlowx/image/upload/v1748659972/notification-mcp-logo_ymwx1p.jpg" alt="Notification MCP Logo" width="200" height="200"/>
+  <img src="./icon.png" alt="Notification MCP Logo" width="300"/>
 
   # ✨ Notifications MCP Server ✨
 
@@ -11,7 +11,7 @@
 
   [![NPM Downloads](https://img.shields.io/npm/dm/@pinkpixel/notification-mcp?style=flat-square&color=ff69b4)](https://www.npmjs.com/package/@pinkpixel/notification-mcp) [![GitHub Stars](https://img.shields.io/github/stars/pinkpixel-dev/notification-mcp?style=flat-square&color=ff69b4)](https://github.com/pinkpixel-dev/notification-mcp/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/pinkpixel-dev/notification-mcp?style=flat-square&color=ff69b4)](https://github.com/pinkpixel-dev/notification-mcp/issues) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](http://makeapullrequest.com)
 
-  [![Platform Support](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey?style=flat-square)](https://github.com/pinkpixel-dev/notification-mcp) [![Built with Love](https://img.shields.io/badge/Built%20with-❤️-ff1744.svg?style=flat-square)](https://pinkpixel.dev) [![Pink Pixel](https://img.shields.io/badge/Pink-Pixel-ff69b4?style=flat-square&logo=sparkles)](https://pinkpixel.dev)
+  [![Platform Support](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=flat-square)](https://github.com/pinkpixel-dev/notification-mcp) [![Built with Love](https://img.shields.io/badge/Built%20with-❤️-ff1744.svg?style=flat-square)](https://pinkpixel.dev) [![Pink Pixel](https://img.shields.io/badge/Pink-Pixel-ff69b4?style=flat-square&logo=sparkles)](https://pinkpixel.dev)
 
 </div>
 
@@ -22,9 +22,16 @@ A Model Context Protocol server that allows AI agents to play notification sound
 ## ✨ Features
 
 ### 🔧 Tools
+
+- `notify` - Show a desktop toast notification and/or play a sound when tasks complete (Recommended for summaries)
+  - `message` (required): The notification message/summary of the completed task
+  - `title` (optional): The title for the toast notification (defaults to "Task Completed")
+  - `mode` (optional): `"toast" | "sound" | "both"` (defaults to `"both"`)
+  - `sound` (optional): Name of the sound to play, which overrides default settings
+  - Fully supports Windows, macOS, and Linux out of the box!
 - `play_notification` - Play a notification sound to indicate task completion
-  - Takes an optional `message` parameter to display with the notification
-  - Supports cross-platform sound playback (Windows and macOS)
+  - Takes an optional `message` parameter to log/display with the notification
+  - Supports cross-platform sound playback (Windows, macOS, and Linux)
   - **Works with bundled sounds** - no manual downloads required!
 
 ### 🎵 Built-in Sound Library
@@ -115,8 +122,25 @@ The notification sound can be configured using environment variables:
 
 ## 💻 Usage
 
-Once configured, your MCP client can call the `play_notification` tool:
+Once configured, your MCP client can call either the unified `notify` tool or the audio-only `play_notification` tool:
 
+### 1. Unified Toast + Sound Notification (Recommended)
+```typescript
+await client.request({
+  method: "tools/call",
+  params: {
+    name: "notify",
+    arguments: {
+      title: "Build Succeeded",
+      message: "Antigravity successfully tested the package version 0.2.0! 🚀",
+      mode: "both", // "toast", "sound", or "both"
+      sound: "cosmic" // optional override
+    }
+  }
+});
+```
+
+### 2. Audio-Only Notification
 ```typescript
 await client.request({
   method: "tools/call",
@@ -210,7 +234,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is dual-licensed under the MIT and Apache 2.0 Licenses - see the [LICENSE](LICENSE) file for details.
 
 ## 🌟 About Pink Pixel
 
